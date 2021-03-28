@@ -1,0 +1,17 @@
+@import url(../auth/__container/auth__container.css);
+@import url(../auth/__input/auth__input.css);
+@import url(../auth/__save-button/auth__save-button.css);
+@import url(../auth/__title/auth__title.css);
+
+.auth {
+  display: flex;
+  max-width: 358px;
+  margin: auto;
+  position: relative;
+}
+
+@media (max-width: 480px) {
+  .form {
+    width: calc(100% - 60px);
+  }
+}

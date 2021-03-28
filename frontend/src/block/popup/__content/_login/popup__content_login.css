@@ -1,0 +1,16 @@
+.popup__content_login {
+  width: 430px;
+  height: 330px;
+  padding: 60px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  background: white;
+}
+
+@media (max-width: 560px) {
+  .popup__content_login {
+    padding: 50px 18px;
+  }
+}

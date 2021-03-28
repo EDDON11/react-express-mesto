@@ -1,0 +1,34 @@
+@import url(../popup/__body/popup__body.css);
+@import url(../popup/__close/popup__close.css);
+@import url(../popup/__title/popup__title.css);
+@import url(../popup/__save-button/popup__save-button.css);
+@import url(../popup/__form/popup__form.css);
+@import url(../popup/__content/popup__content.css);
+@import url(../popup/__input/popup__input.css);
+@import url(../../block/popup/__input/_type/popup__input_type_heading.css);
+@import url(../../block/popup/__input/_type/popup__input_type_subheading.css);
+@import url(../../block/popup/__input/_type/popup__input_type_title.css);
+@import url(../../block/popup/__input/_type/popup__input_type_url.css);
+@import url(../popup/__save-button/_disable/popup__save-button_disable.css);
+@import url(../popup/__input/_type/popup__input_type_error.css);
+@import url(../popup/_photo/popup_photo.css);
+@import url(../popup/__title/_photo/popup__title_photo.css);
+@import url(../popup/__full/popup__full.css);
+@import url(../popup/__content/_photo/popup__content_photo.css);
+@import url(../popup/__close/_photo/popup__close_photo.css);
+@import url(../popup/__login-text/popup__login-text.css);
+@import url(../popup/__login-img/popup__login-img.css);
+@import url(../popup/__content/_login/popup__content_login.css);
+
+.popup {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  display: flex;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.7s linear;
+}

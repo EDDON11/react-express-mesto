@@ -1,0 +1,7 @@
+.popup__body {
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}

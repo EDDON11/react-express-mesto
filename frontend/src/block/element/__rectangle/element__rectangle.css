@@ -1,0 +1,6 @@
+.element__rectangle {
+display: flex;
+justify-content: space-between;
+padding: 25px 15px 31px 21px;
+
+}

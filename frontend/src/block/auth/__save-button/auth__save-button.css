@@ -1,0 +1,23 @@
+.auth__save-button {
+  height: 50px;
+  background: #ffffff;
+  border: none;
+  border-radius: 2px;
+  box-shadow: none;
+  color: #000000;
+  font-size: 18px;
+  line-height: 1.2;
+  margin-top: 186px;
+  transition: opacity 1s linear;
+}
+
+.auth__save-button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  .auth__save-button {
+    margin-top: 143px;
+  }
+}
