@@ -101,7 +101,7 @@ export default class Api {
 }
 
 export const api = new Api({
-  url: "https://mesto.nomoredomains.icu",
+  url: "https://api.mesto.nomoredomains.icu/signin",
   headers: {
     "Content-Type": "application/json",
     authorization: `Bearer ${localStorage.getItem("jwt")}`,
