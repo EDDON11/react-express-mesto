@@ -4,6 +4,10 @@ export default class Api {
     this._headers = config.headers;
   }
 
+  setToken(jwt) {
+    this.headers.authorization = `Bearer ${jwt}`;
+  }
+
   getUserInfo() {
     return fetch(`${this._url}users/me`, {
       method: "GET",
@@ -97,9 +101,9 @@ export default class Api {
 }
 
 export const api = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-18/",
+  url: "https://mesto.nomoredomains.icu",
   headers: {
     "Content-Type": "application/json",
-    authorization: "2828a81c-91b3-4dda-937b-4ff777409bb5",
+    authorization: `Bearer ${localStorage.getItem("jwt")}`,
   },
 });

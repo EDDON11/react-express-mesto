@@ -168,56 +168,76 @@ function App() {
   const handleLogin = (data) => {
     const { email, password } = data;
     return authorize(email, password)
-      .then((res) => {
-        if (!res || res.statusCode === 401) {
-          setIsInfoTooltipOpen(true);
-          throw new Error("Нет такого пользователя");
-        }
-        if (!res || res.statusCode === 400) {
-          setIsInfoTooltipOpen(true);
-          throw new Error("Ошибка");
-        }
-        if (res.token) {
-          setLoggedIn(true);
-          setRequestSuccessful(true);
-          history.push("/");
-          localStorage.setItem("jwt", res.token);
-          getContent(res.token).then((res) => {
-            if (res) {
-              setLoginData(res.data);
+        .then((res) => {
+            if (!res || res.statusCode === 401) {
+                setIsInfoTooltipOpen(true)
+                throw new Error('Пользователь не зарегесрирован');
             }
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+            if (!res || res.statusCode === 400) {
+                setIsInfoTooltipOpen(true)
+                throw new Error('Не передано одно из полей ');
+            }
+            if (res.token) {
+                setRequestSuccessful(true);
+                localStorage.setItem('jwt', res.token);
+                api.setToken(res.token);
+                getContent(res.token)
+                    .then((res) => {
+                        if (res){
+                        setLoggedIn(true);
+                        setLoginData(res.data);
+                        setCurrentUser(res);
+                        history.push('/');
+                        }
+                    });
+            }
+        })
+    
+}
+
+
+  React.useEffect(() => {
+    if (loggedIn) {
+        Promise.all([api.getInitialCards(), api.getUserinfo()])
+        .then(([cardData, userData]) => {
+            setCurrentUser(userData);
+            setCards(cardData.data);
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        history.push('/');
+    }
+}, [history, loggedIn])
+
+
 
   const [loginData, setLoginData] = React.useState({
     _id: "",
     email: "",
   });
 
-  React.useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      getContent(jwt).then((res) => {
-        if (res) {
-          setLoggedIn(true);
-          setLoginData(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    }
-  }, []);
+  React.
+  useEffect(() => {
+      const jwt = localStorage.getItem("jwt");
+      if (jwt) {
+          api.setToken(jwt);
+          getContent(jwt)
+          .then((res) => {
+              if (res){
+                  setLoggedIn(true);
+                  setLoginData(res.data);
+                }
+          })
+      }
+    }, []);
 
-  const handleSignOut = () => {
-    localStorage.removeItem("jwt");
-    setRequestSuccessful(false);
-  };
+    const handleSignOut = () => {
+      localStorage.removeItem('jwt');
+      setLoggedIn(false);
+      setRequestSuccessful(false);
+  }
+
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
