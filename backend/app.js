@@ -7,6 +7,7 @@ const {login, createUser} = require('./controllers/users')
 const { requestLogger, errorLogger } = require("./middlewares/logger");
 const auth = require("./middlewares/auth");
 const { celebrate, Joi, errors } = require("celebrate");
+const cors = require('cors')
 
 const { PORT = 3000 } = process.env;
 
@@ -29,6 +30,8 @@ app.get("/crash-test", () => {
     throw new Error("Сервер сейчас упадёт");
   }, 0);
 });
+
+app.use(cors());
 
 app.post(
   "/signin",
