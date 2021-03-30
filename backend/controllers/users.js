@@ -102,7 +102,7 @@ const login = (req, res) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       if (!user) {
-        throw new Unauthorized("Пользователь не зарегистрирован");
+        throw new Unauthorized("Не удалось получить информацию о пользователе");
       }
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
         expiresIn: "7d",
