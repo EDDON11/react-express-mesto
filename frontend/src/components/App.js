@@ -55,28 +55,6 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((userData) => {
-        setCurrentUser(userData);
-      })
-      .catch((err) => {
-        console.log("Ошибка", err);
-      });
-  }, []);
-
-  React.useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cards) => {
-        setCards(cards);
-      })
-      .catch((err) => {
-        console.log("Ошибка", err);
-      });
-  }, []);
-
   function handleUpdateUser(data) {
     api
       .setUserInfo(data)
@@ -167,77 +145,68 @@ function App() {
 
   const handleLogin = (data) => {
     const { email, password } = data;
-    return authorize(email, password)
-        .then((res) => {
-            if (!res || res.statusCode === 401) {
-                setIsInfoTooltipOpen(true)
-                throw new Error('Пользователь не зарегесрирован');
-            }
-            if (!res || res.statusCode === 400) {
-                setIsInfoTooltipOpen(true)
-                throw new Error('Не передано одно из полей ');
-            }
-            if (res.token) {
-                setRequestSuccessful(true);
-                localStorage.setItem('jwt', res.token);
-                api.setToken(res.token);
-                getContent(res.token)
-                    .then((res) => {
-                        if (res){
-                        setLoggedIn(true);
-                        setLoginData(res.data);
-                        setCurrentUser(res);
-                        history.push('/');
-                        }
-                    });
-            }
-        })
-    
-}
-
+    return authorize(email, password).then((res) => {
+      if (!res || res.statusCode === 401) {
+        setIsInfoTooltipOpen(true);
+        throw new Error("Пользователь не зарегесрирован");
+      }
+      if (!res || res.statusCode === 400) {
+        setIsInfoTooltipOpen(true);
+        throw new Error("Не передано одно из полей ");
+      }
+      if (res.token) {
+        setRequestSuccessful(true);
+        localStorage.setItem("jwt", res.token);
+        api.setToken(res.token);
+        getContent(res.token).then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            setLoginData(res.data);
+            setCurrentUser(res);
+            history.push("/");
+          }
+        });
+      }
+    });
+  };
 
   React.useEffect(() => {
     if (loggedIn) {
-        Promise.all([api.getInitialCards(), api.getUserinfo()])
+      Promise.all([api.getInitialCards(), api.getUserinfo()])
         .then(([cardData, userData]) => {
-            setCurrentUser(userData);
-            setCards(cardData.data);
+          setCurrentUser(userData);
+          setCards(cardData.data);
         })
-        .catch(err => {
-            console.log(err)
-        })
-        history.push('/');
+        .catch((err) => {
+          console.log(err);
+        });
+      history.push("/");
     }
-}, [history, loggedIn])
-
-
+  }, [history, loggedIn]);
 
   const [loginData, setLoginData] = React.useState({
     _id: "",
     email: "",
   });
 
-  React.
-  useEffect(() => {
-      const jwt = localStorage.getItem("jwt");
-      if (jwt) {
-          api.setToken(jwt);
-          getContent(jwt)
-          .then((res) => {
-              if (res){
-                  setLoggedIn(true);
-                  setLoginData(res.data);
-                }
-          })
-      }
-    }, []);
+  React.useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      api.setToken(jwt);
+      getContent(jwt).then((res) => {
+        if (res) {
+          setLoggedIn(true);
+          setLoginData(res.data);
+        }
+      });
+    }
+  }, []);
 
-    const handleSignOut = () => {
-      localStorage.removeItem('jwt');
-      setLoggedIn(false);
-      setRequestSuccessful(false);
-  }
-
+  const handleSignOut = () => {
+    localStorage.removeItem("jwt");
+    setLoggedIn(false);
+    setRequestSuccessful(false);
+  };
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
