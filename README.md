@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 9c7cafb (Progect 14)
-=======
->>>>>>> b92afd5 (fix)
-#  Проект Mesto на React 
+#  Проект Mesto
 
 # Технологии 
 
@@ -15,15 +8,9 @@
 * React hooks
 * Bem css
 * Адаптивная верстка
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-# mesto-react-auth
->>>>>>> 8ce979b (Initial commit)
-=======
->>>>>>> 9c7cafb (Progect 14)
-=======
-=======
-# mesto-react-auth
->>>>>>> 8ce979b (Initial commit)
->>>>>>> b92afd5 (fix)
+* Node.js
+* Express.js
+
+##
+Ссылка на проект
+178.154.195.126 — публичный IP-адрес сервера https://mesto.nomoredomains.icu — домен приложения Mesto
