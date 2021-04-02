@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: 'airbnb-base',
   parserOptions: {
@@ -9,6 +10,7 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 12,
+    sourceType: 'module',
   },
   rules: {
     'no-underscore-dangle': ['error', {
@@ -16,5 +18,7 @@ module.exports = {
     }],
     'no-console': 'off',
     'linebreak-style': 0,
+    'no-unused-vars': 'off',
+    'consistent-return': 'off',
   },
 };
