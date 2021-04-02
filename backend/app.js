@@ -26,8 +26,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-app.use('/', auth, usersRouter);
-app.use('/', auth, cardsRouter);
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
@@ -59,9 +57,15 @@ app.post(
   }),
   createUser,
 );
+app.use('/', auth, usersRouter);
+app.use('/', auth, cardsRouter);
 
 app.use(errorLogger);
 app.use(errors());
+
+app.use(() => {
+  throw new NotFound('Запрашиваемый ресурс не найден');
+});
 
 app.use((err, req, res, next) => {
   if (err.status !== '500') {
