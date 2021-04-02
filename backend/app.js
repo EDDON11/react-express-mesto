@@ -63,9 +63,6 @@ app.post(
 app.use(errorLogger);
 app.use(errors());
 
-app.use(() => {
-  throw new NotFound('Запрашиваемый ресурс не найден');
-});
 app.use((err, req, res, next) => {
   if (err.status !== '500') {
     res.status(err.status).send(err.message);
