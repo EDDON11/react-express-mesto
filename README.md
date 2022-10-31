@@ -1,16 +1,16 @@
-#  Проект Mesto
+#  Mesto app
 
-# Технологии 
-
-* React 
-* Функциональные компоненты 
-* Работа с api 
+* React  
+* Api 
 * React hooks
 * Bem css
-* Адаптивная верстка
+* Media screen
 * Node.js
 * Express.js
 
 ##
-Ссылка на проект
-178.154.195.126 — публичный IP-адрес сервера https://mesto.nomoredomains.icu — домен приложения Mesto
+Project:
+178.154.195.126 —  https://mesto.nomoredomains.icu
+
+
+![alt text](/frontend//public//mesto.png)
